@@ -5,8 +5,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-eltag ${msg} jsp아니라서 불가
+eltag ${msg} <!-- jsp아니라서 불가 -->
 	<h2 th:text="${msg}"></h2>
-	<a th:href="@{/test}">here</a>
+	<a th:href="@{/test}">here</a><br>
+	
+	<a th:href="@{/login}">Login</a><br>
+	<a th:href="@{/signUp}">SignUp</a><br>
+	<a th:href="@{/board}">Board</a><br>
 </body>
 </html>

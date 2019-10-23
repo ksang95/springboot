@@ -8,11 +8,14 @@
 <table>
 <tr><th>id</th><th>userId</th><th>title</th><th>content</th></tr>
 <tr th:each="board : ${boardList}">
-<td th:text="${board.id}"></td>
+<!-- <td th:text="${board.id}"/> -->
+<td th:text="${boardStat.count}"></td>
 <td th:text="${board.userId}"></td>
 <td th:text="${board.title}"></td>
 <td th:text="${board.content}"></td>
 </tr>
 </table>
+<a th:href="@{/insertPost}">Write a Post</a><br>
+<a th:href="@{/index}">Home</a>
 </body>
 </html>

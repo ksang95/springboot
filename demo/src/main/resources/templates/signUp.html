@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" >
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<form th:action="@{/signUpResult}" th:object="${user}" th:method="post">
+ID: <input type="text" th:field="*{id}" id="id" name="id"><br>
+PASSWORD: <input type="password" th:field="*{password}" id="password" name="password"><br>
+NAME: <input type="text" th:field="*{name}" id="name" name="name"><br>
+<input type="submit" value="signUp">
+</form>
+</body>
+</html>

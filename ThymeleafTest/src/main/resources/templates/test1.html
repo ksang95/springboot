@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thymeleaf tutorial: exercise 2</title>
+<link rel="stylesheet" href="../../../css/main-static.css"
+	th:href="@{/css/main.css}" />
+<meta charset="utf-8" />
+</head>
+<body>
+	<h1>Thymeleaf tutorial - Answer for exercise 2: bean values</h1>
+	<h2>Product information</h2>
+	<dl>
+		<dt>Product name</dt>
+		<dd th:text="${product.description}">Red chair</dd>
+		<dt>Product price</dt>
+		<dd th:text="${#numbers.formatDecimal(product.price, 1, 2)}">350</dd>
+		<dt>Product available from</dt>
+		<dd th:text="${#dates.format(product.availableFrom, 'dd-MMM-yyyy')}">28-Jun-2013</dd>
+	</dl>
+	<dl>
+		<dt>Product name</dt>
+		<dd th:text="${product.description}">Red chair</dd>
+		<dt>Product price</dt>
+		<dd th:text="${product.price}">350</dd>
+		<dt>Product available from</dt>
+		<dd th:text="${product.availableFrom}">28-Jun-2013</dd>
+	</dl>
+
+	<h1>Thymeleaf tutorial - Solution for exercise 5: escaped and
+		unescaped text</h1>
+	<div th:text="${html}">Some escaped text</div>
+	<div th:utext="${html}">Some unescaped text</div>
+</body>
+</html>

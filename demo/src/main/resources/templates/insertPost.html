@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<form th:action="@{/board}" th:object="${board}" th:method="get">
+USER ID: <input type="text" th:field="*{userId}" id="userId" name="userId"><br>
+TITLE: <input type="text" th:field="*{title}" id="title" name="title"><br>
+CONTENT: <input type="text" th:field="*{content}" id="content" name="content"><br>
+<input type="submit" value="submit">
+</form>
+</body>
+</html>
