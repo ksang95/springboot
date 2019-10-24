@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.riz/thymeleaf/layout" xmlns:th="http://www.thymeleaf.org">
+<head>
+<title layout:title-pattern="$LAYOUT_TITLE : $CONTENT_TITLE">title</title>
+	<!-- 공통으로 사용할 css, js, img... -->
+	<th:block th:replace="fragments/commonHead"></th:block>
+</head>
+<body>
+	<h1>Default Layout</h1>
+	<!-- body 부분 -->
+	<th:block th:replace="fragments/body :: body"></th:block>
+	<!-- 공통 footer -->
+	<footer th:replace="fragments/commonFooter :: commonFooter"></footer>
+	<!-- 공통 js -->
+	<!-- <th:block th:replace="fragments/commonScript"></th:block> -->
+	<!-- 현재 페이지에서 사용할 js -->
+	<th:block layout:fragment="pageScript"></th:block>
+</body>
+</html>

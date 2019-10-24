@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Thymeleaf tutorial: exercise 15</title>
+<link rel="stylesheet" href="../../../css/main-static.css"
+	th:href="@{/css/main.css}" />
+<meta charset="utf-8" />
+</head>
+<body>
+	<h1>Thymeleaf tutorial - Solution for exercise 15: parameterizable
+		fragments</h1>
+	<div th:fragment="banner(color, text)" th:remove="all">
+		<div class="banner " th:attrappend="class=${color}">
+			<img src="../../../images/logo.jpg" th:src="@{/images/logo.jpg}"
+				alt="Thymeleaf logo" width=50 height=50 /> <span th:text="${text}">The
+				Thymeleaf tutorial</span>
+		</div>
+	</div>
+	<div th:include="this :: banner('white', 'Product information')">Banner</div>
+	<h2>Product information</h2>
+	<dl>
+		<dt>Product name</dt>
+		<dd th:text="${product.description}">Red chair</dd>
+		<dt>Product price</dt>
+		<dd th:text="${product.price}">350</dd>
+		<dt>Product available from</dt>
+		<dd th:text="${product.availableFrom}">28-Jun-2013</dd>
+	</dl>
+	<div th:include="this :: banner('red', 'Customer information')">Banner</div>
+	<h2>Customer information</h2>
+	<dl>
+		<dt>First name</dt>
+		<dd th:text="${customer.firstName}">John</dd>
+		<dt>Last name</dt>
+		<dd th:text="${customer.lastName}">Smith</dd>
+		<dt>Genre</dt>
+		<dd th:text="${customer.gender}">Male</dd>
+		<dt>Payment method</dt>
+		<dd th:text="${customer.paymentMethod}">Credit card</dd>
+		<dt>Balance</dt>
+		<dd th:text="'$' + ${customer.balance}">$350</dd>
+	</dl>
+	<div th:include="this :: banner('blue', 'Copyright 2013')">Banner</div>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h2>Member 가입</h2><br>
+<form th:action="@{/joinMemberResult}" th:method="get" th:object="${member}">
+번호: <input type="text" th:field="*{no}">
+이름: <input type="text" th:field="*{name}">
+<input type="submit" value="가입">
+</form>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTDMapper3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.demo.dao.MemberMapper">
+	<select id="getMemberList" resultType="Member">
+		select no, name from member
+	</select>
+
+	<select id="getMember" resultType="Member" parameterType="int">
+		select no, name from member where no = #{no}
+	</select>
+	
+	<insert id="insertMember" parameterType="Member">
+		insert into member(no, name) values(#{no}, #{name})
+	</insert>
+</mapper>

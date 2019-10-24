@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.demo.vo.Customer;
+import com.example.demo.vo.Gender;
 import com.example.demo.vo.Product;
 
 @Controller
@@ -84,5 +85,33 @@ public class SimpleFormatUseController {
 	@GetMapping("test7")
 	public void test7(Model model) {
 		model.addAttribute("customerName","PETER");
+	}
+	@GetMapping("test8")
+	public void test8(Model model) {
+		model.addAttribute("customer",new Customer("상희", "김", "FEMALE", "CREDIT_CARD", 1000));
+		model.addAttribute("product",new Product("검정구두",200,new Date(191024)));
+	}
+	@GetMapping("test9")
+	public void test9(Model model) {
+		model.addAttribute("customerName","PETER");
+	}
+	@GetMapping("test10")
+	public void test10(Model model) {
+		model.addAttribute("product",new Product("검정구두",200,new Date(191024)));
+		Gender gender = Gender.FEMALE;
+		switch (gender) {
+		case FEMALE:
+			System.out.println(gender.name()+gender.ordinal());
+			break;
+		case MALE:
+			break;
+		default:
+			break;
+		}
+	}
+	
+	@GetMapping("test11")
+	public void test11() {
+		
 	}
 }

@@ -50,7 +50,7 @@ public class MainController {
 
 	@RequestMapping("/signUp")
 	public void signUp(User user) {
-
+		
 	}
 
 	@RequestMapping("/signUpResult")
