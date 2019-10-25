@@ -12,3 +12,4 @@ public interface MemberMapper {
 	Member getMember(int no);
 	int insertMember(Member member);
 }
+

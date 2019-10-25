@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.example.demo.bean.Member;
+import com.example.demo.dao.MemberMapper2;
 import com.example.demo.service.MemberService;
 
 @Controller
@@ -14,6 +15,8 @@ public class MemberController {
 	
 	@Autowired
 	MemberService service;
+	//@Autowired
+	MemberMapper2 mapper;
 	
 	@GetMapping({"/","home"})
 	public String home() {
@@ -23,6 +26,7 @@ public class MemberController {
 	@GetMapping("memberList")
 	public void memberList(Model model) {
 		model.addAttribute("memberList",service.getMemberList());
+		//model.addAttribute("memberList",mapper.selectMembers());
 	}
 	
 	@GetMapping("searchMember")
