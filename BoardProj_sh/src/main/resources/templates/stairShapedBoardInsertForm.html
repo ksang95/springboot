@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Stair-shaped Board</title>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<style type="text/css">
+
+#stairFormUpside{
+	margin: 10px;
+}
+
+#stairFormUpside #writer{
+	margin-right: 10px;
+}
+</style>
+<script type="text/javascript" th:src="@{/js/stairShapedBoardForm.js}">
+	
+</script>
+</head>
+<body>
+	<form id="stairBoardForm" th:action="@{/stairShapedBoardInsert}"
+		th:object="${board}" onsubmit="updateBoard()"
+		method="post">
+		<input type="hidden" th:field="*{prntno}">
+		<div id="stairFormUpside">
+		글쓴이: <input type="text" size="20" th:field="*{writer}" required="required"  pattern=".{1,10}">
+		제목: <input type="text" size="50" th:field="*{title}" autofocus="autofocus" required="required"  pattern=".{1,30}"><br>
+		</div>
+		<textarea id="stairContent" rows="30" cols="100" th:field="*{content}" required="required"></textarea>
+		<span id="textCount"></span>
+		<br> <input type="submit" value="등록">
+		<button type="button" onclick="history.back(-1)">취소</button>
+	</form>
+</body>
+</html>
