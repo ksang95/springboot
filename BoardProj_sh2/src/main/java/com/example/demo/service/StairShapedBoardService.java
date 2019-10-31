@@ -2,8 +2,8 @@ package com.example.demo.service;
 
 import java.util.List;
 
-import com.example.demo.bean.BesideBoardVO;
-import com.example.demo.bean.StairShapedBoardVO;
+import com.example.demo.vo.BesideBoardVO;
+import com.example.demo.vo.StairShapedBoardVO;
 
 public interface StairShapedBoardService {
 

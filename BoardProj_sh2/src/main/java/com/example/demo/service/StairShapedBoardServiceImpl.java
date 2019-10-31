@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.demo.bean.BesideBoardVO;
-import com.example.demo.bean.StairShapedBoardVO;
-import com.example.demo.mapper.StairShapedBoardMapper;
+import com.example.demo.dao.StairShapedBoardMapper;
+import com.example.demo.vo.BesideBoardVO;
+import com.example.demo.vo.StairShapedBoardVO;
 
 @Service("StairShapedBoardService")
 public class StairShapedBoardServiceImpl implements StairShapedBoardService {

@@ -16,15 +16,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.example.demo.bean.StairPagingVO;
-import com.example.demo.bean.StairShapedBoardVO;
 import com.example.demo.service.StairShapedBoardService;
+import com.example.demo.vo.StairPagingVO;
+import com.example.demo.vo.StairShapedBoardVO;
 
 @Controller
 public class StairShapedBoardController {
 
 	@Autowired
 	StairShapedBoardService service;
+
+	@GetMapping("index")
+	public void index() {
+	}
 
 	@GetMapping("stairShapedBoardList")
 	public void stairShapedBoardList(@RequestParam(defaultValue = "1") int nowPage, String category, String search,	Model model) {
