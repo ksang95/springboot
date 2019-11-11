@@ -1,0 +1,29 @@
+@charset "UTF-8";
+.pagination> .disabled > span{
+	pointer-events:none;
+}
+.pagination>.page-item>span {
+	cursor:pointer;
+}
+#textCount{
+	float:right;
+	size:15pt;
+	color:gray;
+	font-weight: bold;
+}
+
+.thisBoardTitleInList {
+	font-weight: bold;
+}
+#stairContent {
+	white-space: pre-line;
+	min-height: 200px;
+	clear:both;
+}
+#stairThisBoard {
+	clear:both;
+}
+
+.stairBoardRBtnDiv{
+	float:right;
+}
