@@ -13,6 +13,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.io.FilenameUtils;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.o7planning.sbdownload.utils.MediaTypeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
@@ -20,19 +22,64 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.example.demo.bean.FileVO;
+import com.example.demo.bean.StairShapedBoardVO;
 import com.example.demo.mapper.FileMapper;
+import com.example.demo.service.StairShapedBoardService;
 
 @Controller
 public class FileController {
-
+	@Autowired
+	StairShapedBoardService service;
 	@Autowired
 	FileMapper mapper;
 	@Autowired
 	private ServletContext servletContext;
+
+	@PostMapping("/upload_image")
+	private void uploadImg(@ModelAttribute("board") StairShapedBoardVO board, MultipartHttpServletRequest request) {
+
+		int no = service.insertBoard(board);
+		// System.out.println(request.getServletContext().getRealPath("/upload/"));
+		for (MultipartFile file : request.getFiles("image_param")) {
+			String url = request.getServletContext().getRealPath("/upload/");
+			String fileName = file.getOriginalFilename();
+			String fileNameExtension = FilenameUtils.getExtension(fileName).toLowerCase(); // 확장자명 가져오기
+			String destinationFileName = null;
+			File destinationFile = null;
+			do {
+				destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." + fileNameExtension;// 파일명 중복 처리
+				destinationFile = new File(url, destinationFileName);
+			} while (destinationFile.exists()); // 같은 이름의 파일 있으면 이름 새로 만들기
+
+			destinationFile.getParentFile().mkdirs(); // 파일의 경로 만들기
+
+			try {
+				file.transferTo(destinationFile);
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				System.out.println(e.getMessage());
+			}
+			FileVO fileVO = new FileVO();
+			fileVO.setBno(no);
+			fileVO.setFileName(destinationFileName);
+			fileVO.setFileOriName(file.getOriginalFilename());
+			fileVO.setFileUrl("/upload/");
+			mapper.insertFile(fileVO);
+
+		}
+
+	}
 
 	@RequestMapping("/fileDown2/{fno}")
 	private void fileDown2(@PathVariable int fno, HttpServletRequest request, HttpServletResponse response) {
@@ -164,5 +211,4 @@ public class FileController {
 
 		return encodedFileName;
 	}
-
 }

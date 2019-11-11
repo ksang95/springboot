@@ -43,7 +43,7 @@ let no=/*[[${thisBoard.no}]]*/;
 			<span class="pr-3" id="hits" th:text="|조회수 *{hits}|"></span> 
 			<span class="pr-3" id="date" th:text="|*{#dates.format(regdate,'yy.MM.dd hh:mm')}|"></span>
 		</div>
-		<p class="pl-5 pb-5" id="stairContent" th:utext="*{content}" ></p>
+		<p class="pl-5 pb-5" id="stairContent" th:text="*{content}" ></p>
 		<div class="pl-5 pb-5" th:if="${files!=null}">
 		<th:block th:each="img:${imgs}">
 			<img alt="" th:src="@{${img}}" style="display:block;">

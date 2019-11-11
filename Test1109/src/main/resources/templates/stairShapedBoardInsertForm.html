@@ -12,12 +12,6 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
- <!-- Include Editor style. -->
-<link href='https://cdn.jsdelivr.net/npm/froala-editor@3.0.6/css/froala_editor.pkgd.min.css' rel='stylesheet' type='text/css' />
-
-<!-- Include JS file. -->
-<script type='text/javascript' src='https://cdn.jsdelivr.net/npm/froala-editor@3.0.6/js/froala_editor.pkgd.min.js'></script>
-<script src="../js/plugins/image.min.js"></script>
 <link rel="stylesheet" th:href="@{/css/stairShapedBoard.css}">
 <style type="text/css">
 </style>
@@ -26,69 +20,7 @@
 </script>
 <script type="text/javascript">
 	$(function() {
-		var editor = new FroalaEditor('#froala-editor', {
-		    // Set the image upload parameter.
-		    imageUploadParam: 'image_param',
-
-		    // Set the image upload URL.
-		    imageUploadURL: '/upload_image',
-
-		    // Set request type.
-		    imageUploadMethod: 'POST',
-
-		    // Set max image size to 5MB.
-		    imageMaxSize: 5 * 1024 * 1024,
-
-		    // Allow to upload PNG and JPG.
-		    imageAllowedTypes: ['jpeg', 'jpg', 'png'],
-
-		    events: {
-		      'image.beforeUpload': function (images) {
-		        // Return false if you want to stop the image upload.
-		      },
-		      'image.uploaded': function (response) {
-		        // Image was uploaded to the server.
-		      },
-		      'image.inserted': function ($img, response) {
-		        // Image was inserted in the editor.
-		      },
-		      'image.replaced': function ($img, response) {
-		        // Image was replaced in the editor.
-		      },
-		      'image.error': function (error, response) {
-		        // Bad link.
-		        if (error.code == 1) { ... }
-
-		        // No link in upload response.
-		        else if (error.code == 2) { ... }
-
-		        // Error during image upload.
-		        else if (error.code == 3) { ... }
-
-		        // Parsing response failed.
-		        else if (error.code == 4) { ... }
-
-		        // Image too text-large.
-		        else if (error.code == 5) { ... }
-
-		        // Invalid image type.
-		        else if (error.code == 6) { ... }
-
-		        // Image can be uploaded only to same domain in IE 8 and IE 9.
-		        else if (error.code == 7) { ... }
-
-		        // Response contains the original server response to the request if available.
-		      }
-		    }
-		});
 		$("#inputFile").on("change", handleImgFileSelect); //on(event,handler) -> 여기서는 change 이벤트 발생할때의 동작 지정
-		$('#froala-editor').froalaEditor({
-	        imageUploadURL: '/image', // 업로드 처리 end point
-	        imageUploadParam: 'imgs', // 파일 파라메터명
-	        imageUploadMethod: 'POST',
-	        imageAllowedTypes: ['jpeg', 'jpg', 'png'],
-	        imageMaxSize: 2 * 1024 * 1024 // 최대 이미지 사이즈 : 2메가
-	    });
 	});
 	function handleImgFileSelect(e) {
 		$(".imgsWrap").html(""); //파일 다시 선택시 미리보기 초기화
@@ -135,9 +67,8 @@
 			</div>
 			<div class="form-group">
 				<label for="stairContent">내용</label>
-					<div class="fr-view">
-						 <textarea th:field="*{content}" id="froala-editor"></textarea>
-					</div>
+				<textarea class="form-control" id="stairContent" rows="20"
+					th:field="*{content}"></textarea>
 			</div>
 			<div class="form-group">
 				<input type="file" multiple="multiple" id="inputFile" name="files">

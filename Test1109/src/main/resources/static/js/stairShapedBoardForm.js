@@ -23,10 +23,10 @@ $(function() {
 			this.setCustomValidity("");
 		};
 	}
-	//countPost($('#stairContent'));
-	/*$('#stairContent').keyup(function() {
+	countPost($('#stairContent'));
+	$('#stairContent').keyup(function() {
 		countPost($(this));
-	});*/
+	});
 });
 
 function countPost(e) {
@@ -44,8 +44,6 @@ function showBoard() {
 }
 
 function updateBoard() {
-	alert($('#froala-editor').froalaEditor('html.get'));
-	//alert($($('#froala-editor').froalaEditor('html.get')).text());
 	let str = $("#stairContent").val();
 	str = str.replace(/(?:\r\n|\r|\n)/g, '<br />'); // 엔터 처리
 	$("#stairContent").val(str);
